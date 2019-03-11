@@ -1,6 +1,8 @@
-#include <algorithm>
+/* O(n log n) solution */
 
 // refer to https://codesays.com/2014/solution-to-beta2010-number-of-disc-intersections-by-codility
+#include <algorithm>
+
 int solution(vector<int> &A) {
     // write your code in C++14 (g++ 6.2.0)
     const int N = static_cast<int>(A.size());
@@ -43,4 +45,43 @@ int solution(vector<int> &A) {
     }
 
     return total;
+}
+
+/* O(n) solution */
+
+// refer to https://app.codility.com/demo/results/trainingVATT2P-NGZ/
+int solution(vector<int> &A) {
+    // write your code in C++14 (g++ 6.2.0)
+    const int N = static_cast<int>(A.size());
+    
+    // record number of non-intersected discs from the dicscs prior to the current disc
+    vector<int> non_intersect_cnt(N+1, 0);
+    
+    for (int i=0; i<N; ++i) {
+        // those not intersected with disc i must not be intersected with disc i+1
+        non_intersect_cnt[i+1] += non_intersect_cnt[i];
+        
+        // disc i+A[i]+1 is the beginning of discs not intersected with disc i
+        // don't need to add to discs after i+A[i]+1 because the above operation can help that
+        const long long int tmp = A[i];
+        if (i+tmp < N) non_intersect_cnt[i+tmp+1] += 1;
+    }
+    
+    int total = 0;
+    
+    for (int i=0; i<N; ++i) {
+        if (A[i] >= i) {
+            // the discs prior to disc i must be intersected with disc i
+            total += i;
+        }
+        else {
+            // the discs prior to and within A[i] must be intersected with disc i
+            total += A[i];
+            
+            // the discs prior to but not within A[i] may be intersected with disc i
+            total += i-A[i]-non_intersect_cnt[i-A[i]];
+        }
+    }
+    
+    return (total > 10000000)? -1 : total;
 }
