@@ -11,7 +11,7 @@ int solution(string &S) {
             mystack.push(']');
         } else if (*cit == '(') {
             mystack.push(')');
-        } else if (*cit == mystack.top()) {
+        } else if (!(mystack.empty()) && (*cit == mystack.top())) {
             mystack.pop();
         } else {
             return 0;
