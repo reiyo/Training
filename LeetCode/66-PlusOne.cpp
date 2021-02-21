@@ -1,3 +1,4 @@
+// Note that no need to reverse: https://leetcode.com/problems/plus-one/discuss/24084/Is-it-a-simple-code(C%2B%2B)
 class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {
