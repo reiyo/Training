@@ -7,6 +7,7 @@ public:
         sort(nums.begin(), nums.end());
         
         for (int i=0; i+2<nums.size(); ++i) {
+            // may loss solution if we use "if (nums[i] == nums[i+1]) continue"
             if (i > 0 && nums[i] == nums[i-1]) continue;
             int t = 0-nums[i];
             int j = i+1;
