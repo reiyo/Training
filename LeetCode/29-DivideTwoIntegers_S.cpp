@@ -26,3 +26,51 @@ public:
         return sign * res;
     }
 };
+
+class Solution {
+public:
+    bool getQuo(long long int& dividend, long long int divisor, long long int& quo) {
+        long long int i = 1;
+        long long int cur_div = divisor;
+
+        while (dividend >= cur_div) {
+            dividend -= cur_div;
+            quo += i;            
+            i += i;
+            cur_div += cur_div;
+        }
+
+        if (dividend == 0) return true;
+        else return false;
+    }
+
+    int divide(int dividend, int divisor) {
+        if (dividend==0) return 0;
+        bool negative = false;
+        long long int l_dividend = dividend;
+        long long int l_divisor = divisor;
+        if (dividend < 0) {
+            l_dividend = 0 - l_dividend;
+            negative = !negative;
+        }
+        if (divisor < 0) {
+            l_divisor = 0 - l_divisor;
+            negative = !negative;
+        }
+        long long int quo=0;
+
+        while (!getQuo(l_dividend, l_divisor, quo)) {
+            if (l_divisor > l_dividend) break;
+        }
+
+        if (negative) {
+            quo = 0-quo;
+            if (quo < INT_MIN) return INT_MAX;
+            return quo;
+        }
+        else {
+            if (quo > INT_MAX) return INT_MAX; 
+            return quo;
+        }
+    }
+};
