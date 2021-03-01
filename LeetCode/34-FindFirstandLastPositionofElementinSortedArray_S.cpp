@@ -29,3 +29,34 @@ public:
         return left;
     }
 };
+
+// same idea
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        if (nums.size()<=0) return {-1, -1};
+        int last = nums.size()-1;
+        int left = 0, right = last;
+
+        while(left <= right) {
+            int mid = (left+right)/2;
+            if (nums[mid] == target) right = mid - 1;
+            else if (nums[mid] < target) left = mid + 1;
+            else right = mid - 1;
+        }
+
+        int left_s = right+1;
+        // important! need to consder the case "left > last" (thus, "left_s > last")
+        if (left_s > last || nums[left_s] != target) return {-1, -1};
+        left = 0; right = last;          
+
+        while(left <= right) {
+            int mid = (left+right)/2;
+            if (nums[mid] == target) left = mid+1;
+            else if (nums[mid] < target) left = mid + 1;
+            else right = mid - 1;
+        }
+        int right_s = left-1;
+        return {left_s, right_s};
+    }
+};
