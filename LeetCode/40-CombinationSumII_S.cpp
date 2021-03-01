@@ -16,10 +16,11 @@ public:
         }
         
         for (int i=start; i<nums.size() && nums[i]<=target; ++i) {
+            // given that [1, 1, 1, 2], the if-statement guarantees that exactly [1, 1, x] can be considered, no [1, x, 1], if two ones are required
             if (i > start && nums[i] == nums[i-1]) continue;
             cur.push_back(nums[i]);
             collect(nums, i+1, target-nums[i], cur, output);
-            cur.resize(cur.size()-1);
+            cur.pop_back();
         }
     }
 };
