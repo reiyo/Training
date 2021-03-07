@@ -27,7 +27,7 @@ public:
     }
 };
 
-// BFS
+// BFS, no reverse is required
 class Solution {
 public:
     vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
@@ -35,31 +35,32 @@ public:
         if (root == nullptr) return outs;
         
         queue<TreeNode*> q;
-        unordered_map<TreeNode*, int> m;
         q.push(root);
-        m[root] = 0;
+        bool left2right = false;
 
         while (!q.empty()) {
-            TreeNode* ptr = q.front();
-            q.pop();
-            int level = m[ptr];
+            left2right = !left2right;
+            const int size = q.size();
+            vector<int> out(size);
+            int index = (left2right)? 0 : size-1;
             
-            if (outs.size() <= level) outs.push_back(vector<int>());
-            
-            outs[level].push_back(ptr->val);
-            
-            if (ptr->left != nullptr) {
-                q.push(ptr->left);
-                m[ptr->left] = level + 1;
+            // important! use size rather than q.size() because the q.size() may change in the loops
+            for (int i=0; i<size; ++i) {
+                TreeNode* ptr = q.front();
+                q.pop();
+                
+                if (left2right) out[index++] = ptr->val;
+                else out[index--] = ptr->val;
+                
+                if (ptr->left != nullptr) {
+                    q.push(ptr->left);
+                }
+                if (ptr->right != nullptr) {
+                    q.push(ptr->right);
+                }
             }
-            if (ptr->right != nullptr) {
-                q.push(ptr->right);
-                m[ptr->right] = level + 1;
-            }
-        }
-        
-        for (int i=1; i<outs.size(); i+=2) {
-            reverse(outs[i].begin(), outs[i].end());
+            
+            outs.push_back(out);
         }
         
         return outs;
