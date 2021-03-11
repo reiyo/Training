@@ -23,6 +23,7 @@ public:
     }
 };
 
+// https://www.itread01.com/content/1549857275.html: 由於一個合數總是可以分解成若干個質數的乘積，那麼如果把質數（最初只知道2是質數）的倍數都去掉，那麼剩下的就是質數了。
 class Solution {
 public:
     int countPrimes(int n) {
