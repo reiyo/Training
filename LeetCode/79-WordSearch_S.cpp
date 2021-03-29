@@ -1,5 +1,41 @@
 class Solution {
 public:
+    bool backtrack(vector<vector<char>>& board, int m, int n, int i, int j, string& w, int k) {
+        // if we set "if (k <= w.length()) return true", we have to consider something like [['a']]
+        if (board[i][j] != w[k]) return false;
+        if (k+1 >= w.length()) return true;
+        
+        char ch = board[i][j];
+        board[i][j] = '0';
+        
+        // not to go further if res is true
+        bool res = false;
+        if (i > 0) res = backtrack(board, m, n, i-1, j, w, k+1);
+        if (!res && i+1 < m) res = backtrack(board, m, n, i+1, j, w, k+1);
+        if (!res && j > 0) res = backtrack(board, m, n, i, j-1, w, k+1);
+        if (!res && j+1 < n) res  = backtrack(board, m, n, i, j+1, w, k+1);
+
+        // remember to revert
+        board[i][j] = ch;
+        return res;
+    }
+
+    bool exist(vector<vector<char>>& board, string word) {
+        int m = board.size();
+        int n = board[0].size();
+
+        for (int i=0; i<m; ++i) {
+            for (int j=0; j<n; ++j) {
+                if (backtrack(board, m, n, i, j, word, 0)) return true;
+            }
+        }  
+        
+        return false;      
+    }
+};
+
+class Solution {
+public:
     bool exist(vector<vector<char>>& board, string word) {
         if (!board.size() || !word.length() || !board[0].size()) return false;
         
