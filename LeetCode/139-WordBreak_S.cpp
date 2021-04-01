@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool wordBreak(string s, vector<string>& wordDict) {
-        set<string> dict(wordDict.begin(), wordDict.end());
+        unordered_set<string> dict(wordDict.begin(), wordDict.end());
         vector<bool> dp(s.length(), false);
         
         // dp[k] is true if s[0...k] can be formed by dict
