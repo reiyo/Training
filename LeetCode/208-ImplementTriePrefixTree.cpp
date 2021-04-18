@@ -6,11 +6,11 @@ public:
         // as nullptr is not an integer, so it does not work below
         // memset(child, nullptr, 26);
         
-        is_leaf = false;
+        is_word = false;
     }
     
     Node* child[26];
-    bool is_leaf;
+    bool is_word; // does not use is_leaf because a word can be in an internal node
 };
 
 class Trie {
@@ -31,7 +31,7 @@ public:
             cur = cur->child[c-'a'];
         }
         
-        cur->is_leaf = true;
+        cur->is_word = true;
     }
     
     /** Returns if the word is in the trie. */
@@ -43,7 +43,7 @@ public:
             cur = cur->child[c-'a'];
         }
         
-        return cur->is_leaf;
+        return cur->is_word;
     }
     
     /** Returns if there is any word in the trie that starts with the given prefix. */
