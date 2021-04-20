@@ -40,3 +40,38 @@ public:
         return output;
     }
 };
+
+// same idea
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+        vector<int> res;
+        res.reserve(m*n); // this can reduce memory consumption
+        
+        int t=0, b=m-1, l=0, r=n-1;
+        
+        while (t <= b && l <= r) {
+            for (int i=l; i<=r; ++i) res.push_back(matrix[t][i]);
+            
+            // otherwise, we will loop the same line from right to late
+            if (t == b) break;
+            
+            for (int i=t+1; i<=b; ++i) res.push_back(matrix[i][r]);
+            
+            // otherwise, we will loop the same column from bottom to top
+            if (l == r) break;
+            
+            for (int i=r-1; i>=l; --i) res.push_back(matrix[b][i]);
+            
+            for (int i=b-1; i>t; --i) res.push_back(matrix[i][l]);
+            ++ t;
+            -- b;
+            ++ l;
+            -- r;
+        }
+
+        return res;
+    }
+};
