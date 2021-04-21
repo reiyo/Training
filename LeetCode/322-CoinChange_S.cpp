@@ -25,3 +25,24 @@ public:
         return (dp[n][amount]!=INT_MAX)? dp[n][amount] : -1;
     }
 };
+
+// time complexity: O(n * S), where n is the number of coins, and S is the amount
+// space complexity: O(S)
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        int n = static_cast<int>(coins.size());
+        vector<int> dp(amount+1, INT_MAX);
+        dp[0] = 0;
+
+        for (int i=1; i<=n; ++i) {
+            int v = coins[i-1];
+
+            for (int j=1; j<=amount; ++j) {
+                if (j>=v && dp[j-v] != INT_MAX) dp[j] = min(dp[j], dp[j-v]+1);
+            }
+        }
+
+        return (dp[amount]!=INT_MAX)? dp[amount] : -1;
+    }
+};
