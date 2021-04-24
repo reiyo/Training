@@ -1,8 +1,6 @@
 class LFUCache {
 public:
-    LFUCache(int capacity) {
-        this->cap = capacity;
-        minCnt = 0;
+    LFUCache(int capacity): cap(capacity), minCnt(0) {
     }
     
     int get(int key) {
