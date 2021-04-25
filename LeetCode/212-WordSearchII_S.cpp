@@ -1,3 +1,5 @@
+// time complexity: O(M * (4*3^(L-1))), where M is the number of cells in the board, and L is the max length of words. Initially, we have at most 4 directions, and then 3 directions.
+// space complexity: O(N), where N is the total number of letters in the dictionary.
 class Node {
 public:
     Node() {
