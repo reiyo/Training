@@ -1,4 +1,5 @@
 // refer to https://leetcode.com/problems/serialize-and-deserialize-binary-tree/discuss/74259/Recursive-preorder-Python-and-C%2B%2B-O(n)
+// similar to 428. Serialize and Deserialize N-ary Tree
 class Codec {
 public:
 
