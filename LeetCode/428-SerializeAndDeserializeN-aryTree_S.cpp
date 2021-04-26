@@ -1,4 +1,4 @@
-// Similar to 297. 
+// Similar to 297. Serialize and Deserialize Binary Tree
 /*
 // Definition for a Node.
 class Node {
