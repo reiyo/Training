@@ -20,3 +20,5 @@ public:
         return dp[365];
     }
 };
+
+// better solution can be referred to https://leetcode.com/problems/minimum-cost-for-tickets/discuss/226659
