@@ -31,7 +31,9 @@ public:
             int left = 0;
             int right = size; // tail[size] has not been defined  
 
-            // find index so that tails[index-1] < x <= tails[index]
+            // not a typical binary search! 
+            // it is to find the lower bound to [left, right)
+            // find index so that tails[index-1] < n <= tails[index]
             while (left < right) {
                 int mid = left + (right-left)/2;
 
