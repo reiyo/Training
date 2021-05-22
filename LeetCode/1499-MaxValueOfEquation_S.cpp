@@ -1,5 +1,6 @@
 // time complexity: O(n)
 // space complexity: O(n)
+// refer to https://leetcode.com/problems/max-value-of-equation/discuss/709231
 // yi + yj + |xi - xj| = yi + yj + (xj - xi) = (yi - xi) + (yj + xj)
 class Solution {
 public:
