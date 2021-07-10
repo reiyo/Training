@@ -1,5 +1,6 @@
 // refer to https://leetcode.com/problems/the-most-similar-path-in-a-graph/discuss/790240
-// refer to https://leetcode.com/problems/the-most-similar-path-in-a-graph/discuss/788753
+//          https://leetcode.com/problems/the-most-similar-path-in-a-graph/discuss/1141694 (about the problem statement)
+//          https://leetcode.com/problems/the-most-similar-path-in-a-graph/discuss/788753
 // Time Complexity: O(n^2 * m), where m is the length of targetPath
 // Space Complexity: O(n * m)
 class Solution {
